@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - AI-Driven Civic Engagement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>CivicConnect</h1>
+                <div id="auth-section">
+                    <button id="btn-show-login" class="secondary-btn">Login / Register</button>
+                    <div id="user-info" class="hidden">
+                        <span id="welcome-msg" style="margin-right: 15px;"></span>
+                        <button id="btn-logout" class="secondary-btn">Logout</button>
+                    </div>
+                </div>
+            </div>
+            <p>Smart Civic Engagement Platform Powered by AI</p>
+        </header>
+
+        <main>
+            <section class="report-section card" style="position: relative;">
+                <h2>Report an Issue</h2>
+                <div id="auth-overlay" class="auth-overlay">
+                    <p>You must be logged in to report an issue.</p>
+                    <button class="primary-btn" onclick="document.getElementById('auth-modal').classList.remove('hidden')">Login to Report</button>
+                </div>
+                <form id="issue-form">
+                    <div class="input-group">
+                        <label for="title">Issue Title</label>
+                        <input type="text" id="title" required placeholder="e.g., Pothole on Main St">
+                    </div>
+                    <div class="input-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" required placeholder="Describe the issue in detail..."></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn">Submit to Analyze</button>
+                </form>
+                <div id="form-message" class="hidden"></div>
+            </section>
+
+            <section class="dashboard-section card">
+                <div class="dashboard-header">
+                    <h2>Live Issue Feed</h2>
+                    <div>
+                        <button id="btn-public-feed" class="secondary-btn hidden active-view">Public Feed</button>
+                        <button id="btn-official-dash" class="secondary-btn hidden">Official Dashboard</button>
+                    </div>
+                </div>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="Infrastructure">Infrastructure</button>
+                    <button class="filter-btn" data-filter="Safety">Safety</button>
+                    <button class="filter-btn" data-filter="Environment">Environment</button>
+                    <button class="filter-btn" data-filter="Health">Health</button>
+                    <button class="filter-btn" data-filter="Education">Education</button>
+                    <button class="filter-btn" data-filter="Sanitation">Sanitation</button>
+                    <button class="filter-btn" data-filter="General">General</button>
+                </div>
+                <div id="issues-container" class="issues-grid">
+                    <div class="loading">Loading issues...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content card">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2 id="modal-title">Login</h2>
+            <form id="auth-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="input-group hidden" id="role-group">
+                    <label for="role">Role</label>
+                    <select id="role" style="width: 100%; padding: 0.8rem; background: rgba(15,23,42,0.6); border: 1px solid rgba(255,255,255,0.2); border-radius: 0.5rem; color: white;">
+                        <option value="Citizen">Citizen</option>
+                        <option value="Official">Government Official</option>
+                    </select>
+                </div>
+                <button type="submit" class="primary-btn" id="auth-submit-btn">Login</button>
+                <p id="auth-toggle-text" style="margin-top:1rem;text-align:center;">Don't have an account? <a href="#" id="toggle-auth" style="color:var(--accent);">Register</a></p>
+                <div id="auth-error" class="hidden" style="color: var(--negative); margin-top: 1rem; text-align: center;"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
